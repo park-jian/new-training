@@ -1,6 +1,7 @@
 <template>
     <div >
         <list-item></list-item>
+        <!-- 변경 테스트 실행중 -->
         <!-- <ul class="news-list">
             <li v-for="item in fetchedAsk" class="post">
                
