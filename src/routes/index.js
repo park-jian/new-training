@@ -7,6 +7,7 @@ import UserView from '../views/UserView.vue'
 import NewsView from '../views/NewsView.vue'
 import JobsView from '../views/JobsView.vue'
 import AskView from '../views/AskView.vue'
+import createListView from '../views/CreateListView.js'
 
 Vue.use(VueRouter)
 
@@ -30,28 +31,31 @@ const routes = [
     component: Main
   },
   {
-    path: '/itemView',
+    path: '/itemView/:id',
     name: 'ItemView',
     component: ItemView
   },{
-    path: '/userView',
+    path: '/userView/:id',
     name: 'UserView',
     component: UserView
   },
   {
     path: '/newsView',
     name: 'NewsView',
-    component: NewsView
+    //component: NewsView
+    component: createListView('NewsView'),
   },
   {
     path: '/jobsView',
     name: 'JobsView',
-    component: JobsView
+    //component: JobsView
+    component: createListView('JobsView'),
   },
   {
     path: '/askView',
     name: 'AskView',
-    component: AskView
+    //component: AskView
+    component: createListView('AskView'),
   }
 ]
 

@@ -1,28 +1,30 @@
 <template>
-    <div class="NewsView">
-        <!-- <div v-for="user in users">{{ user.title }}</div> -->
-        <div v-for="user in this.$store.state.news">{{ user.title }}</div>
+    <div >
+       <list-item></list-item>
     </div>
 </template>
 
 <script>
-//import { fetchNewsList } from '../api/index.js';
+import ListItem from '../components/ListIem.vue';
+import bus from '../utils/bus.js';
+
 export default {
-    // data() {      <-- 이건 이제 필요 없음. vuex에서 받아 올 거라서.
-    //     return {
-    //         users: []
-    //     }
-    // },
+    components: {
+        ListItem,
+    },
     created() {
-        this.$store.dispatch('FETCH_NEWS');
-        // fetchNewsList()
-        // .then(response => 
-        //    // this.users = response.data;
-        //    this.users = response.data
-        // )
-        // .catch(error => 
-        //     console.log(error)
-        // )
+        bus.$emit('start:spinner');
+        setTimeout(() => {
+            this.$store.dispatch('FETCH_NEWS')
+            .then(() => {
+                console.log('fetched');
+                bus.$emit('end:spinner');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }, 3000);
+        
     }
 }
 </script>
